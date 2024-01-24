@@ -1,0 +1,30 @@
+<h1 class="mycontainer mt-3">David's Weather App</h1>
+<div class="mycontainer">
+  <div class="time mb-4">
+    {{ currentTime | date : "HH:mm - EE MMM" }}
+  </div>
+
+  <form>
+    <input type="text" name="cityName" />
+    <button class="buttonstyling">Click</button>
+  </form>
+  <div class="card text-white bg-primary m-5">
+    <div class="card-header text-center">
+      <h2>{{ city }}</h2>
+      <p><img src="{{ iconURL }}" alt="weather image" /></p>
+    </div>
+    <div class="card-body text-center">
+      <p class="card-text">Summary: {{ summary }}</p>
+      <p class="card-text">Temperature: {{ temperature }} ° C</p>
+      <p class="card-text">Feels like: {{ feelsLikeTemp }} C</p>
+      <p class="card-text">Windspeed: {{ windspeed }} mph</p>
+      <p class="card-text">Humidity: {{ humidity }} %</p>
+    </div>
+    <div class="timeline">
+      <h1>3 Hour Forecast</h1>
+      <div *ngFor="let item of 'timeline'">
+        <div>{{ currentTime | date : "HH:mm" }}</div>
+      </div>
+    </div>
+  </div>
+</div>
