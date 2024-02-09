@@ -4,49 +4,49 @@
     {{ currentTime | date : "HH:mm - EE MMM" }}
   </div>
 
-  <div class="d-flex m-2">
-    <button (click)="onButtonClick('London')" class="m-2">London</button>
-    <button (click)="onButtonClick('Cardiff')" class="m-2">Cardiff</button>
-    <button (click)="onButtonClick('Birmingham')" class="m-2">
-      Birmingham
-    </button>
+  <div *ngFor="let city of cityNames" class="d-flex m-2">
+    <app-button [buttonLabel]="city"></app-button>
   </div>
 
-  <ng-container *ngIf="temperature">
-    <div class="card text-white bg-primary m-3">
-      <div class="card-header text-center">
-        <h2>{{ city }}</h2>
-        <p><img src="{{ iconURL }}" alt="weather image" /></p>
+  <div class="d-flex pt-5">
+    <ng-container *ngIf="temperature">
+      <div class="card text-white bg-primary m-3">
+        <div class="card-header text-center">
+          <h2>{{ city }}</h2>
+          <p><img src="{{ iconURL }}" alt="weather image" /></p>
+        </div>
+        <div class="card-body text-center">
+          <p class="card-text">Summary: {{ summary }}</p>
+          <p class="card-text">Temperature: {{ temperature }} ° C</p>
+          <p class="card-text">Feels like: {{ feelsLikeTemp }} C</p>
+          <p class="card-text">Windspeed: {{ windspeed }} mph</p>
+        </div>
       </div>
-      <div class="card-body text-center">
-        <p class="card-text">Summary: {{ summary }}</p>
-        <p class="card-text">Temperature: {{ temperature }} ° C</p>
-        <p class="card-text">Feels like: {{ feelsLikeTemp }} C</p>
-        <p class="card-text">Windspeed: {{ windspeed }} mph</p>
-        <p class="card-text">Humidity: {{ humidity }} %</p>
-      </div>
-    </div>
-    <!-- <div class="timeline"> -->
-    <!-- <h1>5 Day Forecast</h1>
+      <!-- <div class="timeline"> -->
+      <!-- <h1>5 Day Forecast</h1>
       <h2 class="text-center">3 Hour</h2>
       <div>{{ currentTime | date : "HH:mm" }}</div>
     </div> -->
-  </ng-container>
-  <ng-container *ngFor="let dayForecast of fiveDayForecast.list">
-    <div class="card text-white bg-primary m-3">
-      <div class="card-header text-center">
-        <h2>{{ city }}</h2>
-        <p><img src="{{ iconURL }}" alt="weather image" /></p>
+    </ng-container>
+    <ng-container class="" *ngFor="let dayForecast of fiveDayForecast.list">
+      <div class="">
+        <div class="card text-white bg-primary m-3">
+          <div class="card-header text-center">
+            <h2>{{ city }}</h2>
+            <p><img src="{{ iconURL }}" alt="weather image" /></p>
+          </div>
+          <div class="card-body text-center">
+            <p class="card-text">
+              Summary: {{ dayForecast.weather[0].description }}
+            </p>
+            <p class="card-text">Temperature: {{ dayForecast.main.temp }} °C</p>
+            <p class="card-text">Feels like: {{ dayForecast.main.temp }} °C</p>
+            <p class="card-text pb-3">
+              Windspeed: {{ dayForecast.wind.speed }} mph
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="card-body text-center">
-        <p class="card-text">
-          Summary: {{ dayForecast.weather[0].description }}
-        </p>
-        <p class="card-text">Temperature: {{ temperature }} °C</p>
-        <p class="card-text">Feels like: {{ feelsLikeTemp }} °C</p>
-        <p class="card-text">Windspeed: {{ windspeed }} mph</p>
-        <p class="card-text">Humidity: {{ humidity }} %</p>
-      </div>
-    </div>
-  </ng-container>
+    </ng-container>
+  </div>
 </div>
