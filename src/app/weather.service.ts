@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,21 +22,16 @@ export class WeatherService {
     }
 }; 
 
-
   constructor(private http: HttpClient) { 
 }
   
-
   getweather(city: string, units: string) {
     return this.http.get('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=b61fb5a124d60a4aa658f60350d01da0&units=' + units);
   }
 
-  fivedayforecast(city: any){
+  fivedayforecast(city: any): Observable<Object>{
 
-
-  return this.http.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${this.cityMap[city].lat}&lon=${this.cityMap[city].lon}&appid=b61fb5a124d60a4aa658f60350d01da0}`);
-  
-
+return this.http.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${this.cityMap[city].lat}&lon=${this.cityMap[city].lon}&appid=b61fb5a124d60a4aa658f60350d01da0`);
   } 
 }
 

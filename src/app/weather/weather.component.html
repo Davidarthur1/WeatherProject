@@ -4,10 +4,11 @@
     {{ currentTime | date : "HH:mm - EE MMM" }}
   </div>
 
-  <div *ngFor="let city of cityNames" class="d-flex m-2">
-    <app-button [buttonLabel]="city">
-      (click)="onButtonClick=$event()"
-    </app-button>
+  <div *ngFor="let city of cities" class="d-flex m-2">
+    <app-button
+      [buttonLabel]="city"
+      (buttonClick)="onButtonClick(city)"
+    ></app-button>
   </div>
 
   <div class="d-flex pt-5">
@@ -24,13 +25,11 @@
           <p class="card-text">Windspeed: {{ windspeed }} mph</p>
         </div>
       </div>
-      <!-- <div class="timeline"> -->
-      <!-- <h1>5 Day Forecast</h1>
-      <h2 class="text-center">3 Hour</h2>
-      <div>{{ currentTime | date : "HH:mm" }}</div>
-    </div> -->
     </ng-container>
-    <ng-container class="" *ngFor="let dayForecast of fiveDayForecast.list">
+    <ng-container
+      class=""
+      *ngFor="let dayForecast of fiveDayForecastApiResponse"
+    >
       <div class="">
         <div class="card text-white bg-primary m-3">
           <div class="card-header text-center">
