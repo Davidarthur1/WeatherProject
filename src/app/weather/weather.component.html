@@ -10,51 +10,41 @@
       (buttonClick)="onButtonClick(city)"
     ></app-button>
   </div>
+</div>
 
-  <div class="d-flex pt-5">
-    <ng-container *ngIf="temperature">
-      <div class="card text-white bg-primary m-3">
+<div>
+  <h2>Current Weather</h2>
+</div>
+
+<div class="d-flex pt-3">
+  <ng-container
+    class=""
+    *ngFor="let dayForecast of fiveDayForecastApiResponse?.list"
+  >
+    <div class="">
+      <div class="card text-white cardStyling m-3">
         <div class="card-header text-center">
-          <h2>{{ city }}</h2>
-          <p><img src="{{ iconURL }}" alt="weather image" /></p>
+          <h2>{{ fiveDayForecastApiResponse.city.name }}</h2>
+          <p>
+            <img
+              src="{{
+                'https://openweathermap.org/img/wn/' +
+                  dayForecast.weather[0].icon +
+                  '@2x.png'
+              }}"
+              alt="weather image"
+            />
+          </p>
         </div>
         <div class="card-body text-center">
-          <p class="card-text">Summary: {{ summary }}</p>
-          <p class="card-text">Temperature: {{ temperature }} ° C</p>
-          <p class="card-text">Feels like: {{ feelsLikeTemp }} C</p>
-          <p class="card-text">Windspeed: {{ windspeed }} mph</p>
+          <p class="card-text">Summary: {{ dayForecast.weather[0].main }}</p>
+          <p class="card-text">Temperature: {{ dayForecast.main.temp }}°C</p>
+          <p class="card-text">Feels like: {{ dayForecast.main.temp }}°C</p>
+          <p class="card-text pb-3">
+            Windspeed: {{ dayForecast.wind.speed }} mph
+          </p>
         </div>
       </div>
-    </ng-container>
-    <ng-container
-      class=""
-      *ngFor="let dayForecast of fiveDayForecastApiResponse?.list"
-    >
-      <div class="">
-        <div class="card text-white bg-primary m-3">
-          <div class="card-header text-center">
-            <h2>{{ fiveDayForecastApiResponse.city.name }}</h2>
-            <p>
-              <img
-                src="{{
-                  'https://openweathermap.org/img/wn/' +
-                    dayForecast.weather[0].icon +
-                    '@2x.png'
-                }}"
-                alt="weather image"
-              />
-            </p>
-          </div>
-          <div class="card-body text-center">
-            <p class="card-text">Summary: {{ dayForecast.weather[0].main }}</p>
-            <p class="card-text">Temperature: {{ dayForecast.main.temp }} °C</p>
-            <p class="card-text">Feels like: {{ dayForecast.main.temp }} °C</p>
-            <p class="card-text pb-3">
-              Windspeed: {{ dayForecast.wind.speed }} mph
-            </p>
-          </div>
-        </div>
-      </div>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
 </div>

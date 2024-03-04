@@ -30,8 +30,9 @@ export class WeatherService {
   }
 
   fivedayforecast(city: any): Observable<Object>{
-
-return this.http.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${this.cityMap[city].lat}&lon=${this.cityMap[city].lon}&appid=b61fb5a124d60a4aa658f60350d01da0`);
+    
+//Temperature into metric
+return this.http.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${this.cityMap[city].lat}&lon=${this.cityMap[city].lon}&appid=b61fb5a124d60a4aa658f60350d01da0&units=metric`);
   } 
 }
 

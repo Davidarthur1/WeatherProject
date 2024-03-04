@@ -4,7 +4,18 @@
     align-items: center;
 }
 
+.cardStyling{
+    background-color: darkcyan;
+    width: max-content;
+    border-right: thick solid #ff0000;
+}
+
 .buttonstyling{
     margin-right: 32px;
     margin-left: 20px;
 }
+
+.borderLine{
+    border-right: thick solid #ff1323;
+}
+
