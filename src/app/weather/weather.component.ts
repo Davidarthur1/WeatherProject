@@ -26,8 +26,8 @@ onButtonClick(cityName:string): void{
   this.weatherService.fivedayforecast(cityName).subscribe({
 
     next:(res) => {
-      console.log(res)
-      this.fiveDayForecastApiResponse = res;
+      console.log('Response from API:', res)
+      this.fiveDayForecastApiResponse = this.filterForecastData(res);
       console.log(this.myWeather);
 
     },
@@ -36,6 +36,17 @@ onButtonClick(cityName:string): void{
 
     complete: () => console.info('API call completed')
   })
+}
+
+filterForecastData(data: any): any[] {
+  const filteredData = [];
+  const intervalsPerDay = 8; //one entry for every 3 hour interval
+
+  for (let i = 0; i < data.list.length; i+= intervalsPerDay) {
+    filteredData.push(data.list[i]);
+  }
+
+  return filteredData;
 }
 
 
