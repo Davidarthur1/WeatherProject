@@ -13,6 +13,7 @@ export class WeatherComponent implements OnInit{
   myWeather: any;
   currentTime = new Date();
   fiveDayForecastApiResponse: any;
+  fiveDayForecast: any;
   cities: string[] = ['London', 'Cardiff', 'Birmingham'];
   cityForecast: any = {};
   
@@ -27,7 +28,8 @@ onButtonClick(cityName:string): void{
 
     next:(res) => {
       console.log('Response from API:', res)
-      this.fiveDayForecastApiResponse = this.filterForecastData(res);
+      this.fiveDayForecastApiResponse = res;
+      this.fiveDayForecast = this.filterForecastData(res);
       console.log(this.myWeather);
 
     },
